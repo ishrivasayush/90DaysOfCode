@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -32,5 +33,11 @@ public class BookController {
         Optional<Book> getBook = bookService.getBook(isbn);
         return getBook.map(book->new ResponseEntity(book,HttpStatus.FOUND)).orElse(new ResponseEntity(HttpStatus.NOT_FOUND));
     }
+    @GetMapping(path="/books")
+    public ResponseEntity<List<Book>> getBookById() {
+        return new ResponseEntity<List<Book>>(bookService.getAllBooks(),HttpStatus.OK);
+    }
+
+
 
 }
