@@ -1,25 +1,25 @@
-package com.narainox.BlogsAppBackend.model;
+package com.narainox.BlogsAppBackend.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
 
-@AllArgsConstructor
-@NoArgsConstructor
 @Data
-@Document
-public class Blog {
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
+public class CommentResponse {
     @Id
-    private ObjectId blogId;
+    private String commentId;
     private String title;
-    private String description;
-    private Boolean publish;
-    private String userId;
+    private ObjectId user;
+    private ObjectId blog;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 }

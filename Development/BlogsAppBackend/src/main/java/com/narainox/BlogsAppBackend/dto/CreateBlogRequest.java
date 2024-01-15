@@ -1,4 +1,4 @@
-package com.narainox.BlogsAppBackend.model;
+package com.narainox.BlogsAppBackend.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -12,14 +12,11 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-@Document
-public class Blog {
-    @Id
-    private ObjectId blogId;
+
+public class CreateBlogRequest {
+
     private String title;
     private String description;
     private Boolean publish;
-    private String userId;
-    private LocalDateTime createdAt;
-    private LocalDateTime updatedAt;
+
 }

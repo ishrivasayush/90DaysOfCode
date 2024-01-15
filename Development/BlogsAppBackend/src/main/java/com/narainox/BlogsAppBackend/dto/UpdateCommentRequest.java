@@ -1,4 +1,4 @@
-package com.narainox.BlogsAppBackend.model;
+package com.narainox.BlogsAppBackend.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,17 +9,14 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
 
-@AllArgsConstructor
-@NoArgsConstructor
 @Data
-@Document
-public class Blog {
+@NoArgsConstructor
+@AllArgsConstructor
+public class UpdateCommentRequest {
     @Id
-    private ObjectId blogId;
+    private String commentId;
     private String title;
-    private String description;
-    private Boolean publish;
-    private String userId;
-    private LocalDateTime createdAt;
-    private LocalDateTime updatedAt;
+    private ObjectId user;
+    private ObjectId blog;
+
 }
