@@ -1,10 +1,13 @@
 package com.narainox.BlogsAppBackend.service.impl;
 
+import com.narainox.BlogsAppBackend.dto.CommonPaginationRequest;
 import com.narainox.BlogsAppBackend.model.Blog;
 import com.narainox.BlogsAppBackend.repository.BlogRepository;
 import com.narainox.BlogsAppBackend.service.BlogService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -30,8 +33,11 @@ public class BlogServiceImpl  implements BlogService {
     {
         return blogRepository.findByBlogId(blogId);
     }
-    public List<Blog> getBlogs(String userId, Pageable pageable)throws Exception
+    public List<Blog> getBlogs(CommonPaginationRequest commonPaginationRequest)throws Exception
     {
-        return blogRepository.findByUser(userId,pageable);
+        Pageable pageable=PageRequest.of(commonPaginationRequest.getPageNo(),
+                commonPaginationRequest.getPageSize(),
+                Sort.by(commonPaginationRequest.getSortBy()).descending());
+        return blogRepository.findByUser(commonPaginationRequest.getValue(),pageable);
     }
 }

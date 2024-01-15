@@ -1,5 +1,6 @@
 package com.narainox.BlogsAppBackend.controller;
 
+import com.narainox.BlogsAppBackend.dto.CommonPaginationRequest;
 import com.narainox.BlogsAppBackend.dto.CreateBlogRequest;
 import com.narainox.BlogsAppBackend.dto.DBSResponseEntity;
 import com.narainox.BlogsAppBackend.dto.UpdateBlogRequest;
@@ -8,10 +9,13 @@ import com.narainox.BlogsAppBackend.service.BlogService;
 import jakarta.validation.Valid;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @Validated
@@ -85,5 +89,28 @@ public class BlogController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
+    @GetMapping("v1/blogs")
+    public ResponseEntity<DBSResponseEntity> getBlogsCall(@RequestParam(defaultValue = "0") Integer pageNumber,
+                                                          @RequestParam(defaultValue = "10") Integer size,
+                                                          @RequestParam(defaultValue = "id") String sortBy,
+                                                          @RequestParam(defaultValue = "1") String userId
 
+    )
+    {
+        DBSResponseEntity dbsResponseEntity=new DBSResponseEntity();
+        CommonPaginationRequest commonPaginationRequest=new CommonPaginationRequest();
+        commonPaginationRequest.setPageNo(pageNumber);
+        commonPaginationRequest.setPageSize(size);
+        commonPaginationRequest.setSortBy(sortBy);
+        commonPaginationRequest.setValue(userId);
+        try {
+            List<Blog> blog1 = blogService.getBlogs(commonPaginationRequest);
+            dbsResponseEntity.setData(blog1);
+            return ResponseEntity.ok(dbsResponseEntity);
+        }
+        catch (Exception e)
+        {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
 }
