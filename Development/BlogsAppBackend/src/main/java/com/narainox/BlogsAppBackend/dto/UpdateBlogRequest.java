@@ -6,9 +6,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-import org.bson.types.ObjectId;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
 
@@ -19,7 +16,7 @@ import java.time.LocalDateTime;
 public class UpdateBlogRequest {
 
     @NotBlank(message = "Blog Id is Required Parameter.")
-    private ObjectId blogId;
+    private Integer blogId;
     @NotBlank(message = "Title is Required Parameter.")
     private String title;
     @NotBlank(message = "Description is Required Parameter.")
@@ -27,7 +24,7 @@ public class UpdateBlogRequest {
     @NotNull(message = "Publish is Required Parameter.")
     private Boolean publish;
     @NotBlank(message = "UserId is required parameter.")
-    private String userId;
+    private Integer userId;
 
 
 }

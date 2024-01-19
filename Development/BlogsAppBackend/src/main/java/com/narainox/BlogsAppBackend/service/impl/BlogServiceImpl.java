@@ -25,11 +25,11 @@ public class BlogServiceImpl  implements BlogService {
     {
         return blogRepository.save(blog);
     }
-    public Blog deleteBlog(String blogId)throws Exception
+    public Blog deleteBlog(Integer blogId)throws Exception
     {
         return blogRepository.deleteByBlogId(blogId);
     }
-    public Blog getByBlogId(String blogId)throws Exception
+    public Blog getByBlogId(Integer blogId)throws Exception
     {
         return blogRepository.findByBlogId(blogId);
     }

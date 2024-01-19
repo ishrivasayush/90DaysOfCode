@@ -1,25 +1,27 @@
 package com.narainox.BlogsAppBackend.model;
 
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.bson.types.ObjectId;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+
 
 import java.time.LocalDateTime;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-@Document
+@Entity
+@Table(name = "blogs")
 public class Blog {
     @Id
-    private ObjectId blogId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer blogId;
     private String title;
     private String description;
     private Boolean publish;
-    private String userId;
+
+    private Integer user;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 }

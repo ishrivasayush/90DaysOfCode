@@ -1,0 +1,10 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/Spring_Data_Jpa
+    username: root
+    password: ayush@123
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
+
