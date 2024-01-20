@@ -10,11 +10,13 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Data
 @Entity
+@AllArgsConstructor
+@Builder
 @Table(name = "authors")
 public class Author {
 
     @Id
-    @GeneratedValue()
+    @GeneratedValue
     /*
     @GeneratedValue(
             strategy = GenerationType.TABLE,
