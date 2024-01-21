@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 
 @NoArgsConstructor
@@ -54,6 +55,14 @@ public class Author {
     )
     private String email;
     private Integer age;
+
+    @ManyToMany(mappedBy = "authors")
+    private List<Course> courses;
+
+
+
+
+    /*
     @Column
             (
                     updatable = false,
@@ -65,4 +74,6 @@ public class Author {
             insertable = false
             )
     private LocalDateTime lastModified;
+
+     */
 }
