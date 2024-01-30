@@ -19,6 +19,8 @@ public class SecurityConfig {
     }
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity security) throws Exception {
+        System.out.println(passwordEncoder().encode("uaser@123"));
+        System.out.println(passwordEncoder().encode("admin@123"));
         return security.csrf(csrf->csrf.disable())
                 .authorizeHttpRequests(authorize->authorize.anyRequest().authenticated())
                 .formLogin(login->login.loginPage("/login")
