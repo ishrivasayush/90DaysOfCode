@@ -1,0 +1,36 @@
+package array;
+
+import java.util.Scanner;
+
+public class RotateArrayKTimes {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Give Size Of An Array:");
+        int n = scanner.nextInt();
+        int k = scanner.nextInt();
+        int arr[] = new int[n];
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = scanner.nextInt();
+        }
+
+        rotateArray(arr,0, arr.length-1);
+        rotateArray(arr,0, k-1);
+        rotateArray(arr,k, arr.length-1);
+
+
+        for (int i = 0; i < arr.length; i++) {
+            System.out.print(arr[i] + " ");
+        }
+    }
+    static void rotateArray(int arr[], int x, int y) {
+        int start = x;
+        int end = y;
+        while (start<end) {
+            int temp = arr[start];
+            arr[start] = arr[end];
+            arr[end] = temp;
+            start++;
+            end--;
+        }
+    }
+}
