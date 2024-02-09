@@ -7,15 +7,17 @@ public class RotateArrayKTimes {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Give Size Of An Array:");
         int n = scanner.nextInt();
-        int k = scanner.nextInt();
+
         int arr[] = new int[n];
         for (int i = 0; i < arr.length; i++) {
             arr[i] = scanner.nextInt();
         }
+        System.out.println("Enter The Value Of K: ");
+        int k = scanner.nextInt();
 
-        rotateArray(arr,0, arr.length-1);
+        rotateArray(arr,0, n-1);
         rotateArray(arr,0, k-1);
-        rotateArray(arr,k, arr.length-1);
+        rotateArray(arr,k, n-1);
 
 
         for (int i = 0; i < arr.length; i++) {
