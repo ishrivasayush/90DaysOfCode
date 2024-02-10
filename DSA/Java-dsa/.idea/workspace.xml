@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1d85d91f-8689-452b-96bf-7638ee808c25" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/array/RotateArrayKTimes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/array/RotateArrayKTimes.java" afterDir="false" />
-    </list>
+    <list default="true" id="1d85d91f-8689-452b-96bf-7638ee808c25" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
