@@ -5,7 +5,6 @@ import com.narainox.firstJobApp.job.JobRepository;
 import com.narainox.firstJobApp.job.JobService;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -45,18 +44,19 @@ public class JobServiceImpl implements JobService {
 
     @Override
     public boolean updateJob(Long id, Job job) {
-        Optional<Job> jobb=jobRepository.findById(id);
-        if (jobb.isPresent()){
-                jobb.setMaxSalary(job.getMaxSalary());
-                jobb.setDescription(job.getDescription());
-                jobb.setLocation(job.getLocation());
-                jobb.setTitle(job.getTitle());
-                jobb.setMinSalary(job.getMinSalary());
-                return true;
-            }
-        else {
-            return false;
+        Optional<Job> job1 = jobRepository.findById(id);
+        if (job1.isPresent())
+        {
+            job1.get().setMinSalary(job.getMinSalary());
+            job1.get().setMinSalary(job.getMaxSalary());
+            job1.get().setLocation(job.getLocation());
+            job1.get().setTitle(job.getTitle());
+            job1.get().setDescription(job.getDescription());
+            jobRepository.save(job1.get());
+            return true;
         }
+        return false;
+    }
 
 }
 
