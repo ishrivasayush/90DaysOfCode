@@ -1,6 +1,8 @@
-package com.narainox.firstJobApp.comapany;
+package com.narainox.firstJobApp.company;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.narainox.firstJobApp.job.Job;
+import com.narainox.firstJobApp.review.Review;
 import jakarta.persistence.*;
 
 
@@ -15,10 +17,21 @@ public class Company {
     private String name;
     private String description;
 
-    @OneToMany
+    @JsonIgnore
+    @OneToMany(mappedBy = "company")
     private List<Job> jobs;
 
-    //private List<Review> reviews;
+
+    @OneToMany(mappedBy = "company")
+    private List<Review> reviews;
+
+    public Company(Long id, String name, String description, List<Job> jobs, List<Review> reviews) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.jobs = jobs;
+        this.reviews = reviews;
+    }
 
     public Company() {
     }
@@ -53,5 +66,13 @@ public class Company {
 
     public void setJobs(List<Job> jobs) {
         this.jobs = jobs;
+    }
+
+    public List<Review> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(List<Review> reviews) {
+        this.reviews = reviews;
     }
 }

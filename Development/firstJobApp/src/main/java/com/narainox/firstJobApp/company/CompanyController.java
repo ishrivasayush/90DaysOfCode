@@ -1,4 +1,4 @@
-package com.narainox.firstJobApp.comapany;
+package com.narainox.firstJobApp.company;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -25,6 +25,25 @@ public class CompanyController {
         return new ResponseEntity<>(companyService.updateCompany(companyId,company),HttpStatus.OK);
     }
 
+    @PostMapping("/")
+    public ResponseEntity<String> createCompany(@RequestBody Company company)
+    {
+        companyService.createCompany(company);
+        return new ResponseEntity<>("Company is created",HttpStatus.CREATED);
+    }
+
+    @DeleteMapping("/{companyId}")
+    public ResponseEntity<String> deleteCompany(@PathVariable Long companyId)
+    {
+        companyService.deleteCompany(companyId);
+        return new ResponseEntity<>("Company is deleted.",HttpStatus.OK);
+    }
+
+    @GetMapping("/{companyId}")
+    public ResponseEntity<Company> getCompanyById(@PathVariable Long companyId)
+    {
+        return new ResponseEntity<>(companyService.getCompany(companyId),HttpStatus.OK);
+    }
 
 
 

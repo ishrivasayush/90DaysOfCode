@@ -1,8 +1,8 @@
-package com.narainox.firstJobApp.comapany.impl;
+package com.narainox.firstJobApp.company.impl;
 
-import com.narainox.firstJobApp.comapany.Company;
-import com.narainox.firstJobApp.comapany.CompanyRepository;
-import com.narainox.firstJobApp.comapany.CompanyService;
+import com.narainox.firstJobApp.company.Company;
+import com.narainox.firstJobApp.company.CompanyRepository;
+import com.narainox.firstJobApp.company.CompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,6 +31,26 @@ public class CompanyServiceImpl implements CompanyService {
             company1.setJobs(company.getJobs());
             company1.setName(company.getName());
             return company1;
+        }
+        return null;
+    }
+
+    @Override
+    public void createCompany(Company company) {
+        companyRepository.save(company);
+    }
+
+    @Override
+    public void deleteCompany(Long companyId) {
+        companyRepository.deleteById(companyId);
+    }
+
+    @Override
+    public Company getCompany(Long companyId) {
+        Optional<Company> company = companyRepository.findById(companyId);
+        if (company.isPresent())
+        {
+            return company.get();
         }
         return null;
     }
