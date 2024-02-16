@@ -72,4 +72,8 @@ public class Review {
     public void setRating(Double rating) {
         this.rating = rating;
     }
+
+    public Review() {
+    }
+
 }

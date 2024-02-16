@@ -28,4 +28,31 @@ public class ReviewServiceImpl implements ReviewService {
         }
        return null;
     }
+
+    @Override
+    public String createReview(Long companyId, Review review) {
+        Optional<Company> company = companyRepository.findById(companyId);
+        if (company.isPresent()) {
+            review.setCompany(company.get());
+            repository.save(review);
+            return "Review is Created";
+        }
+        return null;
+    }
+    @Override
+    public void updateReview(Long companyId, Review review, Long reviewId) {
+        Optional<Company> company = companyRepository.findById(companyId);
+        List<Review> reviews = company.get().getReviews();
+        for (Review r:reviews)
+        {
+            if (r.getId()==reviewId)
+            {
+                r.setDescription(review.getDescription());
+                r.setTitle(review.getTitle());
+                r.setRating(review.getRating());
+                repository.save(r);
+            }
+        }
+    }
 }
+
